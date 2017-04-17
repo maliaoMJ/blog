@@ -1,0 +1,32 @@
+extends ../layout
+block content
+   div.container.col-xs-offset-2
+      h2.admin-index 添加文章
+      if errors && errors.length
+          div.errors
+             each error in errors
+                  p.alert.alert-danger=error.msg
+      div.messages-info.alert.alert-success#info
+               !=messages()
+      form(action="/admin/posts/add/" method="post" enctype="application/x-www-form-urlencoded" )
+        div.form-group
+          label(for="add_title" ) 标题
+          input.form-control(type="text" placeholder="文章标题" name="title" )
+        div.form-group
+          label(for="add_categoty") 分类
+          select#filter-category.form-control(name="category" required)
+                 option(value="" selected="true" ) -选择分类-
+                 each category in categories
+                      option(value=category._id)=category.name
+        div.form-group
+          label(for="add_content") 内容
+          textarea#add-post-content.form-control(type="text" placeholder="文章内容" name="content" required)
+        div.form-group
+          input.btn.btn-success(type="submit" value="提交")
+          input.btn.btn-danger(type="reset" value="重置")  
+      
+ block js
+      script(src="/components/jquery/dist/jquery.js")
+      script(src="/components/bootstrap/dist/js/bootstrap.js")
+      script(src="/js/ckeditor/ckeditor.js")
+      script(src="/js/admin.js")

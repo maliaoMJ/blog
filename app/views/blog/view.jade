@@ -1,0 +1,54 @@
+extends layout
+block content
+  div.post
+      h3.post-title
+           =post.title
+  div.post-meta.posts-view
+     span.post-created
+          发布时间:&nbsp;
+          i.fa.fa-calendar &nbsp
+          =moment(post.created).format('YYYY-MM-DD HH:mm:ss')
+     span.post-author
+          作者:&nbsp;
+          i.fa.fa-user &nbsp
+          =post.author.name
+     span.post-category
+          分类:&nbsp;
+          a(href="/posts/category/"+post.category.name)
+            i.fa.fa-shopping-basket &nbsp
+            =post.category.name
+     span.post-comment
+          评论:&nbsp;
+          a(href="/posts/view/"+post.slug)
+             i.fa.fa-comment &nbsp
+             =post.comments.length || 0
+     span.post-favouriate
+          被赞:&nbsp;
+          a(href="/posts/favorite/"+post._id)
+            i.fa.fa-thumbs-o-up &nbsp
+            =post.meta.favorites || 0
+  div.post-content
+       !=post.content
+  div.post-comments
+      h4 用户评论
+      div.post-comment-list
+          if post.comments.length
+             each comment in post.comments
+                div.post-comment-item
+                    h5.post-comment-email= comment.email
+                       span.post-comment-date=moment(comment.date).format('YYYY-MM-DD HH:mm:ss')
+                    p.post-comment-content=comment.content
+          else
+              p.alert.alert-info  还没有评论
+      form.post-comment-form(action="/posts/comments/"+post._id,method="post" enctype="application/x-www-form-urlencoded")
+           h4 添加评论
+           div.form-group
+              label(for="email") 邮箱
+              input.form-control(type="email" placeholder="your email......" name="email")
+           div.form-group
+              label(for="email") 留言内容
+              textarea.form-control( placeholder="your message...." rows=5 cols=40 name="content")
+           div.form-group
+              input.btn.btn-success(type="submit" value="提交")
+  div.messages-info.alert.alert-success
+          !=messages()

@@ -1,0 +1,91 @@
+extends ../layout
+append css
+  link(rel='stylesheet', href='/components/font-awesome/css/font-awesome.css')
+  link(rel='stylesheet', href='/css/blog.css')
+
+
+block main
+  nav#index_navbarnavbar.navbar-inverse.navbar-fixed-top
+    .container-fluid
+      .navbar-header
+          button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='/') 
+            i.fa.fa-skyatlas
+               &nbsp;NodeJS 博客
+      #navbar.navbar-collapse.collapse
+        ul#menu.nav.navbar-nav.navbar-right
+            li 
+              a.blog-nav-item.active(href='/')
+                i.fa.fa-home
+                &nbsp; 首页
+            li
+              a.blog-nav-item(href='#')
+                i.fa.fa-photo
+                &nbsp; 我的相册
+            li
+              a.blog-nav-item(href='/posts/download')
+                i.fa.fa-download
+                &nbsp; 资源下载
+            li
+              a.blog-nav-item(href='http://xinyulover.space' target="_blank")
+                i.fa.fa-paper-plane
+                &nbsp; 关于我们
+            li
+                form(action="/posts" method="get" enctype="application/x-www-form-urlencoded")
+                  div.form-group
+                     input.form-control(type='text' placeholder="search..." name="keywords" value=
+                     keywords)
+            li
+              a.blog-nav-item(href='/admin/users/login' target="_blank")
+                i.fa.fa-user-circle
+                &nbsp; 登录
+            li
+              a.blog-nav-item(href='/admin/users/register/' target="_blank")
+                i.fa.fa-user-plus
+                &nbsp; 注册
+  .container
+    .row
+      .col-sm-8.blog-main
+        block content
+      .col-sm-3.col-sm-offset-1.blog-sidebar
+        .sidebar-module.sidebar-module-inset
+          h4 About Us
+          p
+            | Etiam porta
+            em sem malesuada magna
+            |  mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
+        .sidebar-module
+          h4 文章分类
+          ol.list-unstyled
+            each category in categories
+             li
+               a(href='/posts/category/'+category.name)=category.name
+
+        .sidebar-module
+            h4 友情链接
+            ol.list-unstyled
+              li
+                a(href='#') GitHub
+              li
+                a(href='#') Twitter
+              li
+                a(href='#') Facebook
+
+  block footer
+    footer.blog-footer
+        #share.share
+          a(title="分享", href="javascript:void(0);")
+             i.fa.fa-telegram.fa-2x(aria-hidden="true")
+          a(title="微博", href="http://blog.sina.com.cn/xinyulovermaker")
+             i.fa.fa-weibo.fa-2x(aria-hidden="true")
+          a#weixin(href="javascript:void(0);", title="微信")
+             i.fa.fa-weixin.fa-2x(aria-hidden="true")
+          a(href="https://github.com/maliaoMJ/UserManage", title="my github")
+             i.fa.fa-github.fa-2x(aria-hidden="true")
+          a(target="_blank", title="QQ", href="http://wpa.qq.com/msgrd?v=3&uin=1789769971&site=qq&menu=yes")
+             i.fa.fa-qq.fa-2x(aria-hidden="true")
+        span.powerBy Copyright &nbsp; ©2016-2018  &nbsp; xinyulover.space  &nbsp; Powered By  &nbsp; @xinyu  &nbsp; Version 0.0.1

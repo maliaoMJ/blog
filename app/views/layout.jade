@@ -1,0 +1,22 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width')
+    title= title
+    block css
+      link(rel='stylesheet', href='/css/style.css')
+      link(rel='stylesheet', href='/components/bootstrap/dist/css/bootstrap.css')
+      link(rel='stylesheet', href='/components/bootstrap/dist/css/bootstrap-theme.css')
+      link(rel='stylesheet', href='/components/font-awesome/css/font-awesome.css')
+
+  body
+
+    block main
+
+    block js
+      script(src="/components/jquery/dist/jquery.js")
+      script(src="/components/bootstrap/dist/js/bootstrap.js")
+      if ENV_DEVELOPMENT
+        script(src='http://localhost:35729/livereload.js')
+      block scripts

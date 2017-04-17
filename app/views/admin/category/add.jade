@@ -1,0 +1,16 @@
+extends ../layout
+block content
+   div.col-xs-offset-2
+      h2.admin-index 增添文章类别
+      div.messages-info.alert.alert-success#info
+               !=messages()
+      form.form(action="/admin/categories/add" method="post" enctype="application/x-www-form-urlencoded" )
+          div.form-group
+              input.form-control(type='text' required placeholder="所增加的类别名称......" name='category')
+          div.form-group
+               input.btn.btn-success(type='submit' value="提交")
+
+ block js
+      script(src="/components/jquery/dist/jquery.js")
+      script(src="/components/bootstrap/dist/js/bootstrap.js")
+      script(src="/js/admin.js")

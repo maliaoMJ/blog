@@ -1,0 +1,49 @@
+extends layout
+block content
+    h2.page-header
+      =category.name
+       分类下的所有文章&nbsp;
+    each post in posts
+      div.post
+          h3.post-title
+             a(href="/posts/view/"+post.slug target="_blank")
+                =truncate(post.title,50)
+      div.post-abstract
+          =truncate(post.content,220)
+          div.post-meta.posts-public
+             span.post-created
+                  发布时间:&nbsp;
+                  i.fa.fa-calendar &nbsp
+                  =moment(post.created).format('YYYY-MM-DD HH:mm:ss')
+             span.post-author
+                  作者:&nbsp;
+                  i.fa.fa-user &nbsp
+                  =post.author.name
+             span.post-category
+                  分类:&nbsp;
+                  a(href="/posts/category/"+post.category.name)
+                    i.fa.fa-shopping-basket &nbsp
+                    =post.category.name
+              span.post-comment
+                   评论:&nbsp;
+                   a(href="/posts/view/"+post.slug)
+                      i.fa.fa-comment &nbsp
+                      =post.comments.length || 0
+             span.post-favouriate
+                  被赞:&nbsp;
+                  i.fa.fa-thumbs-o-up &nbsp
+                  =post.meta.favorites || 0
+          span.post-link
+              a(href="/posts/view/"+post.slug,target="_blank")查看全文
+
+    if pageCount>1
+       nav
+          ul.pagination
+             -var currentPage=1
+             while currentPage<=pageCount
+                if(pageNum===currentPage)
+                  li.active
+                    a(href="/posts/category/"+category.name+"?page="+currentPage)=currentPage++
+                else
+                  li
+                    a(href="/posts/category/"+category.name+"?page="+currentPage)=currentPage++

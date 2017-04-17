@@ -1,0 +1,53 @@
+extends ../layout
+append css
+  link(rel='stylesheet', href='/components/font-awesome/css/font-awesome.css')
+  link(rel='stylesheet', href='/css/admin.css')
+block main
+  block header
+    nav.navbar.navbar-inverse.navbar-fixed-top
+      .container-fluid
+        .navbar-header
+          button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='/') 后台管理界面
+        #navbar.navbar-collapse.collapse
+          ul.nav.navbar-nav.navbar-right
+            if user
+                li 
+                  a=user.email
+                li
+                  a(href='/admin/users/loginout/')
+                    i.fa.fa-power-off
+                    &nbsp; 注销
+            li
+              a(href='#') 帮助
+                i.fa.fa-question
+                &nbsp;&nbsp;&nbsp;&nbsp;
+    .container-fluid
+      .row
+        .col-sm-3.col-md-2.sidebar
+          ul.nav.nav-sidebar
+            li.active
+              a(href='/admin/posts/')
+                i.fa.fa-files-o
+                &nbsp; 文章列表
+            li
+              a(href='/admin/posts/add')
+                i.fa.fa-file-o
+                &nbsp; 添加文章
+            li
+              a(href='/admin/categories/')
+               i.fa.fa-th-list
+               &nbsp; 分类列表
+            li
+              a(href='/admin/categories/add')
+               i.fa.fa-plus
+               &nbsp; 添加分类
+         okup view "error" in views directory "C:\Users\Administrator\Desktop\blog/ap
+
+  block content
+  
+  

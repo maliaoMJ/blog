@@ -1,0 +1,33 @@
+extends ../../layout
+append css
+  link(rel='stylesheet', href='/components/font-awesome/css/font-awesome.css')
+  link(rel='stylesheet', href='/css/user.css')
+block main
+    div.container
+        div.row
+           div.col-xs-10.col-xs-offset-1.col-md-4.col-md-offset-4
+               span.h3 用户登录
+               div.messages-info.alert
+                   !=messages()
+               form(action="/admin/users/login/" method="post" enctype="application/x-www-form-urlencoded")
+                 div.form-group
+                     .input-group.input-group-lg
+                          span#sizing-addon2.input-group-addon 
+                             i.fa.fa-user
+                          input.form-control(type='email' required placeholder='UserEmail......' name='email')
+                  div.form-group
+                     .input-group.input-group-lg
+                          span#sizing-addon2.input-group-addon 
+                             i.fa.fa-lock
+                          input.form-control(type='password' required placeholder='UserPassword......' name='password')
+
+                  div.form-group
+                      button.btn.btn-success.form-control(type="submit" )登录
+                      a.btn.btn-danger.form-control(href="/admin/users/register" )注册
+         div.col-md-4.col-xs-1
+      
+
+
+
+
+   

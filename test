@@ -1,0 +1,82 @@
+{name:'admin',email:'130215619312@qq.com',password:'123456',created:new Date()}
+categories:
+{
+  name:'javascript',
+  slug:'javascript',
+  created:new Date()
+}
+{
+  name:'jQuery',
+  slug:'jQuery',
+  created:new Date()
+}
+{
+  name:'Bootstrap',
+  slug:'Bootstrap',
+  created:new Date()
+}
+{
+  name:'javascript',
+  slug:'javascript',
+  created:new Date()
+}
+{
+  name:'html',
+  slug:'html',
+  created:new Date()
+}
+{
+  name:'css',
+  slug:'css',
+  created:new Date()
+}
+{
+  name:'tools',
+  slug:'tools',
+  created:new Date()
+}
+post:
+{
+title:'First post in javascript',
+content:'First post in javascript',
+category: ObjectId("58ea3ed0686938bfc023ef7a"),
+author:ObjectId("58ea3a4e53e0dcb35e1aadb2"),
+slug:'First post in javascript',
+published:'true',
+meta:{favourates:0},
+comments:[],
+created:new Date()
+}
+{
+title:'First post in css',
+content:'First post in css',
+category: ObjectId("58ea469704cd3caf6c972adc"),
+author:ObjectId("58ea3a4e53e0dcb35e1aadb2"),
+slug:'First post in css',
+published:'true',
+meta:{favourates:0},
+comments:[],
+created:new Date()
+}
+{
+title:'First post in html',
+content:'First post in html',
+category:  ObjectId("58ea3f16686938bfc023ef7b"),
+author:ObjectId("58ea3a4e53e0dcb35e1aadb2"),
+slug:'First post in html',
+published:'true',
+meta:{favourates:0},
+comments:[],
+created:new Date()
+}
+{
+title:'First post in tools',
+content:'First post in tools',
+category: ObjectId("58ea3f57686938bfc023ef7d"),
+author:ObjectId("58ea3a4e53e0dcb35e1aadb2"),
+slug:'First post in tools',
+published:'true',
+meta:{favourates:0},
+comments:[],
+created:new Date()
+}

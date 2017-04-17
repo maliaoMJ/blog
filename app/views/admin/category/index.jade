@@ -1,0 +1,37 @@
+extends ../layout
+block content
+   div.col-xs-offset-2
+       h2.admin-index 文章类别列表
+       div.messages-info.alert.alert-success#info
+               !=messages()
+       table.table.table-bordered.table-responsive
+             thead
+                tr
+                   th(width="30%") 类别名称  
+                   th 创建时间
+                   th 管理
+             tbody
+             each category in categories
+                tr
+                    td
+                        a(href="/posts/category/"+category._id,target="_blank")=category.name
+                    td=moment(category.created).format('YYYY-MM-DD HH:mm:ss')
+                    td
+                       a.btn.btn-sm.btn-success(href="/posts/category/"+category.slug target="_blank") 查看 &nbsp;&nbsp;
+                       a.btn.btn-sm.btn-danger(href="/admin/categories/delete/"+category._id) 删除 &nbsp;&nbsp;
+   div.col-xs-offset-4
+       if pageCount>1
+          nav
+             ul.pagination
+                -var currentPage=1
+                while currentPage<=pageCount
+                   if(pageNum===currentPage)
+                     li.active
+                       a(href="/admin/categories?page="+currentPage)=currentPage++
+                   else
+                     li
+                       a(href="/admin/categories?page="+currentPage)=currentPage++
+ block js
+      script(src="/components/jquery/dist/jquery.js")
+      script(src="/components/bootstrap/dist/js/bootstrap.js")
+      script(src="/js/admin.js")

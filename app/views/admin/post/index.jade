@@ -1,0 +1,137 @@
+extends ../layout
+block content
+   div.col-xs-offset-2
+       h2.admin-index 文章列表
+       form#form-post-filter.form.form-inline
+            div.form-group
+              label 分类 &nbsp;
+              select#filter-category.form-control(name="category")
+                 option(value="" selected=(filter.catgory==="")) -选择分类-
+                 each category in categories
+                      option(value=category._id,selected=(category._id.toString()===filter.category))=category.name
+            div.form-group
+              label 作者 &nbsp;
+              select#filter-author.form-control(name="author")
+                 option(value="" selected=(filter.author==="")) -选择作者-
+                 each author in authors
+                      option(value=author._id,selected=(author._id.toString()===filter.author))=author.name
+            div.form-group
+              label 关键词 &nbsp;
+              input.form-control(name="keywords" value=filter.keywords placeholder="keywords..")
+            div.form-group
+              button#post-filter.btn.btn-primary 检索
+
+
+       div.messages-info.alert.alert-success#info
+               !=messages()
+       table.table.table-bordered
+             thead
+                tr
+                   th(width="30%")
+                       if sortby=='title'
+                           if sortdir=='desc'
+                              a(href="/admin/posts?page="+pageNum+"&sortby=title&sortdir=asc")
+                                  i.fa.fa-arrow-down
+                                  &nbsp;标题
+                           else
+                             a(href="/admin/posts?page="+pageNum+"&sortby=title&sortdir=desc")
+                                 i.fa.fa-arrow-up
+                                 &nbsp;标题
+                       else
+                           a(href="/admin/posts?page="+pageNum+"&sortby=title&sortdir=desc")
+                               i.fa.fa-arrow-down
+                               &nbsp;标题
+                   th
+                       if sortby=='category'
+                           if sortdir=='desc'
+                              a(href="/admin/posts?page="+pageNum+"&sortby=category&sortdir=asc")
+                                  i.fa.fa-arrow-down
+                                  &nbsp;分类
+                           else
+                             a(href="/admin/posts?page="+pageNum+"&sortby=category&sortdir=desc")
+                                 i.fa.fa-arrow-up
+                                 &nbsp;分类
+                       else
+                           a(href="/admin/posts?page="+pageNum+"&sortby=category&sortdir=desc")
+                               i.fa.fa-arrow-down
+                               &nbsp;分类
+                   th
+                       if sortby=='author'
+                           if sortdir=='desc'
+                              a(href="/admin/posts?page="+pageNum+"&sortby=author&sortdir=asc")
+                                  i.fa.fa-arrow-down
+                                  &nbsp;作者
+                           else
+                             a(href="/admin/posts?page="+pageNum+"&sortby=author&sortdir=desc")
+                                 i.fa.fa-arrow-up
+                                 &nbsp;作者
+                       else
+                           a(href="/admin/posts?page="+pageNum+"&sortby=author&sortdir=desc")
+                               i.fa.fa-arrow-down
+                               &nbsp;作者
+                   th
+                       if sortby=='created'
+                           if sortdir=='desc'
+                              a(href="/admin/posts?page="+pageNum+"&sortby=created&sortdir=asc")
+                                  i.fa.fa-arrow-down
+                                  &nbsp;添加时间
+                           else
+                             a(href="/admin/posts?page="+pageNum+"&sortby=created&sortdir=desc")
+                                 i.fa.fa-arrow-up
+                                 &nbsp;添加时间
+                       else
+                           a(href="/admin/posts?page="+pageNum+"&sortby=created&sortdir=desc")
+                               i.fa.fa-arrow-down
+                               &nbsp;添加时间
+                   th 被赞
+                   th 评论
+                   th
+                       if sortby=='published'
+                           if sortdir=='desc'
+                              a(href="/admin/posts?page="+pageNum+"&sortby=published&sortdir=asc")
+                                  i.fa.fa-arrow-down
+                                  &nbsp;状态
+                           else
+                             a(href="/admin/posts?page="+pageNum+"&sortby=published&sortdir=desc")
+                                 i.fa.fa-arrow-up
+                                 &nbsp;状态
+                       else
+                           a(href="/admin/posts?page="+pageNum+"&sortby=published&sortdir=desc")
+                               i.fa.fa-arrow-down
+                               &nbsp;状态
+                   th 管理
+             tbody
+             each post in posts
+                tr
+                    td
+                        a(href="/posts/view/"+post._id,target="_blank")=post.title
+                    td=post.category.name
+                    td=post.author.email
+                    td=moment(post.created).format('YYYY-MM-DD HH:mm:ss')
+                    td=post.meta.favorities ||0
+                    td=post.comments.length || 0
+                    td
+                      if post.published
+                            发布
+                      else
+                            待发布
+                    td
+                       a.btn.btn-sm.btn-success(href="/posts/view/"+post._id target="_blank") 查看 &nbsp;&nbsp;
+                       a.btn.btn-sm.btn-primary(href="/admin/posts/edit/"+post._id target="_blank") 编辑 &nbsp;&nbsp;
+                       a.btn.btn-sm.btn-danger(href="/admin/posts/delete/"+post._id) 删除 &nbsp;&nbsp;
+   div.col-xs-offset-4
+       if pageCount>1
+          nav
+             ul.pagination
+                -var currentPage=1
+                while currentPage<=pageCount
+                   if(pageNum===currentPage)
+                     li.active
+                       a(href="/admin/posts?page="+currentPage+"&sortby="+sortby+"&sortdir="+sortdir+"&category="+filter.category+"&author="+filter.author)=currentPage++
+                   else
+                     li
+                       a(href="/admin/posts?page="+currentPage+"&sortby="+sortby+"&sortdir="+sortdir+"&category="+filter.category+"&author="+filter.author)=currentPage++
+ block js
+      script(src="/components/jquery/dist/jquery.js")
+      script(src="/components/bootstrap/dist/js/bootstrap.js")
+      script(src="/js/admin.js")

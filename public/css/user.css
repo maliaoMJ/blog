@@ -1,0 +1,28 @@
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background:url(../img/dengta.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+.container{
+  margin:120px auto;
+}
+a{
+  margin:10px auto;
+}
+form{
+  margin:20px auto;
+}
+.h3{
+
+  font-size: 30px;
+  font-weight: bolder;
+  font-family: '隶书';
+  
+  color:white;
+}
+.messages-info{
+  color:red;
+}
